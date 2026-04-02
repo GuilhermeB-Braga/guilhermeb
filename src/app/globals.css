@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  /* Fontes */
+  --font-montserrat: "Montserrat", sans-serif;
+
+  /* Cores Base (Mapeadas para as variáveis que mudam) */
+  --color-background-dark: var(--bg-dark);
+  --color-background: var(--bg);
+  --color-background-light: var(--bg-light);
+
+  --color-text-main: var(--text);
+  --color-text-muted: var(--text-muted);
+
+  --color-border-custom: var(--border);
+  --color-highlight: var(--highlight);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+
+  /* Outros */
+  --radius-custom: var(--radius-custom);
+  --background-image-fade-overlay: var(--fade-overlay);
+}
+
+:root {
+
+  --bg-dark: hsl(0, 0%, 2.5%);
+  --bg: hsl(0, 0%, 5%);
+  --bg-light: hsl(0, 0%, 10%);
+
+  --text: hsl(0, 0%, 95%);
+  --text-muted: hsl(0, 0%, 70%);
+
+  --border: hsl(0, 0%, 30%);
+  --highlight: hsl(0, 0%, 60%);
+
+  --primary: hsl(86, 100%, 50%);
+  --primary-hover: hsl(86, 100%, 34%);
+
+  --secondary: hsl(220, 28%, 51%);
+  --secondary-hover: hsl(220, 28%, 42%);
+
+  --radius-custom: 18px;
+}
+
+@layer base {
+
+  * {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  body {
+    @apply bg-background text-text-main font-normal font-montserrat antialiased transition-all duration-300 ease-in-out;
+    line-height: 1.6;
+  }
+
+  /* Scrollbar para Webkit (Chrome, Safari, Edge) */
+  *::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    cursor: none;
+    background-color: transparent;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+    padding: 2px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: var(--text);
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  /* Dica: Adicione suporte para Firefox (opcional) */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--text) transparent;
+  }
+
+  .noOverflow {
+    overflow: hidden;
+  }
+
+}
