@@ -14,7 +14,7 @@ interface ProjetoProps {
   params: Promise<{ slug: string }>;
 }
 
-export default async function Projeto({ params }: ProjetoProps) {
+export async function generateMetadata({ params }: ProjetoProps) {
   const projectService = new ProjectService();
 
   const { slug } = await params;
@@ -22,6 +22,49 @@ export default async function Projeto({ params }: ProjetoProps) {
   const project = await projectService.getProjectBySlug(slug);
 
   if (!project) return notFound();
+
+  const { name, description, tags, galery, coverImage } = project;
+
+  return {
+    title: `${name} | Guilherme Braga`,
+    description: description.slice(0, 160),
+    keywords: tags,
+    openGraph: {
+      title: name,
+      description: description.slice(0, 160),
+      url: `https://guilhermeb.vercel.app/projetos/${slug}`,
+      siteName: "Guilherme Braga Portfólio",
+      images: [
+        {
+          url: coverImage,
+          width: 1200,
+          height: 630,
+          alt: `${name} imagem de pré-visualização`,
+        },
+      ],
+      locale: "pt_BR",
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: name,
+      description: description.slice(0, 160),
+      images: [coverImage, ...(galery as string[]).slice(0, 3)].filter(
+        Boolean,
+      ) as string[],
+    },
+    alternates: {
+      canonical: `https://guilhermeb.vercel.app/projetos/${slug}`,
+    },
+  };
+}
+
+export default async function Projeto({ params }: ProjetoProps) {
+  const projectService = new ProjectService();
+
+  const { slug } = await params;
+
+  const project = await projectService.getProjectBySlug(slug);
 
   const {
     name,
