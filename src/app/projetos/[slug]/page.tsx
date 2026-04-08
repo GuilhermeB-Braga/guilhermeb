@@ -129,7 +129,7 @@ export default async function Projeto({ params }: ProjetoProps) {
 
             <div className="flex gap-2.5 flex-wrap my-5">
               {tags.map((tag: string, index: number) => (
-                <Chip icon text={tag} key={index} />
+                <Chip style="primary" icon text={tag} key={index} />
               ))}
             </div>
 

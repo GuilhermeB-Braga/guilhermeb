@@ -7,4 +7,5 @@ export interface Project {
   tags: string[];
   coverImage: string;
   slug: string;
+  stack: string;
 }

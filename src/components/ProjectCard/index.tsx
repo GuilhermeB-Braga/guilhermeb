@@ -14,7 +14,7 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
-  const { name, date, repository, description, coverImage, tags, slug } =
+  const { name, date, repository, description, coverImage, tags, slug, stack } =
     project;
 
   return (
@@ -33,14 +33,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           className="aspect-video object-cover w-full h-full"
         />
 
-        <span
-          className="
-                absolute top-5 right-5 border border-border-custom text-sm py-.25 px-2.5
-                bg-background-light rounded-full
-            "
-        >
-          Fullstack
-        </span>
+        <Chip
+          text={stack}
+          style="default"
+          otherStyles="absolute top-5 right-5"
+
+        />
       </div>
 
       <div className="p-5 flex flex-col flex-1">
@@ -57,7 +55,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
         <div className="mt-5 flex flex-wrap gap-2.5 mb-5">
           {tags.map((tag, index) => (
-            <Chip style="default" key={index} text={tag} />
+            <Chip style="primary" key={index} text={tag} />
           ))}
         </div>
 
